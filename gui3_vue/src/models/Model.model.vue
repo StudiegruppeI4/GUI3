@@ -3,15 +3,23 @@ export default {
     data() {
         return {
             form: {
-                firstName: '',
+                firstName: {
+                    default: ''
+                },
                 lastName: '',
                 email: '',
                 phoneNo: '',
                 addressLine1: '',
                 addressLine2: '',
-                zip: '',
-                city: '',
-                country: '',
+                zip: {
+                    default: ''
+                },
+                city: {
+                    default: ''
+                },
+                country: {
+                    default: ''
+                },
                 birthDate: '',
                 nationality: '',
                 height: 0,
