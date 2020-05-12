@@ -1,12 +1,25 @@
 <template>
 <div>
-  <h1>Manager</h1>
-  <button @click="registerModel">Register new model</button><br><br>
-  <button @click="registerManager">Register new manager</button><br><br>
-  <button @click="registerJob">Register new job</button><br><br>
-  <button @click="manageModels">Manage models</button><br><br>
-  <button @click="manageManagers">Manage managers</button><br><br>
-  <button @click="viewJobs">View jobs</button>
+    <h1 id="Title">Manager</h1>
+    <div class="Manager">
+        <div>
+            <h3>Models</h3>
+            <button @click="registerModel">Register new model</button>
+            <button @click="manageModels">Manage models</button>
+            
+        </div>
+        <div>
+            <h3>Manager</h3>
+            <button @click="registerManager">Register new manager</button>
+            <button @click="manageManagers">Manage managers</button>
+        </div>
+        <div>
+            <h3>Jobs</h3>
+            <button @click="registerJob">Register new job</button>
+            <button @click="viewJobs">View jobs</button>
+        </div>
+    </div>
+
 </div>
 </template>
 
@@ -47,6 +60,56 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+    #Title{
+        text-align: center;
+        
+        margin-bottom: 20px;
+    }
+    .Manager{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        
+
+    }
+    .Manager div{
+        min-width: 15vw;
+        min-height: 15vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        border: lightgrey 4px solid;
+        border-radius: 4px;
+    }
+    
+    .Manager div button {
+        box-shadow:inset 0px 1px 0px 0px #caefab;
+        
+        background-color:#4CAF50;
+        border-radius:6px;
+        min-width: 180px;
+        display:inline-block;
+        cursor:pointer;
+        color:white;
+        font-family:Arial;
+        font-size:15px;
+        font-weight:bold;
+        padding:6px 6px;
+        
+    }
+    .Manager div button:hover {
+        
+        background-color: #2e9444;
+    }
+    .Manager div button:active {
+        position:relative;
+        top:1px;
+    }
+    .Manager div h3{
+        margin: 0;
+    }
 
 </style>
