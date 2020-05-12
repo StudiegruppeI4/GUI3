@@ -56,6 +56,12 @@ export default {
             e.preventDefault();
             window.location.href = "/manager/jobs";
         }
+    },
+    beforeMount() {
+        if(localStorage.getItem("isManager") == "false")
+        {
+            location.href = "/";
+        }
     }
 }
 </script>

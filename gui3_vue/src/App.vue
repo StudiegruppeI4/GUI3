@@ -2,10 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link>
-      <router-link v-show="validateManager()" to="/manager"
+      <router-link v-show="isManager()" to="/manager"
         >Manager</router-link
       >
-      <LoginModal class="login" />
+      <LoginModal class="login" v-on:isManager="jwtDecode" />
     </div>
     <router-view />
   </div>
@@ -18,47 +18,35 @@ export default {
   name: "app",
   data() {
     return {
-      managers: undefined,
     };
   },
   components: {
     LoginModal,
-  },
+  },  
   methods: {
     //Validates that token is not undefined.
     validateToken() {
       return localStorage.getItem("token") !== "undefined";
     },
-    //Get all managers from API.
-    async getManagers() {
-      var url = "https://localhost:44368/api/Managers";
-      const reponse = await fetch(url, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-          "Content-Type": "application/json",
-        },
-      });
-      const json = await reponse.json();
-      console.log(json);
+    jwtDecode() {
+    let token = {};
+    let t = localStorage.getItem("token");
+    token.raw = t;
+    token.header = JSON.parse(window.atob(t.split('.')[0]));
+    token.payload = JSON.parse(window.atob(t.split('.')[1]));
+    if (token.payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] == "Manager")
+    {
+      localStorage.setItem("isManager", true);
+      console.log("yes");
+    }
+    else
+    {
+      localStorage.setItem("isManager", false);
+      console.log("no");
+    }
     },
-
-    //Validates wether logged user is a manager by examining all managers from API.
-    async validateManager() {
-      if (this.validateToken()) {
-        console.log(this.managers);
-        if (this.managers === undefined) this.getManagers();
-        if (
-          this.managers.find((model) => {
-            console.log(model);
-            model.email === localStorage.getItem("email");
-          }) !== undefined
-        ) {
-          return true;
-        }
-        return false;
-      }
+    isManager() {
+      return localStorage.getItem("isManager") == "true";
     },
   },
 };

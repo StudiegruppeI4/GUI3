@@ -1,30 +1,33 @@
 <template>
 <div>
   <h1>Manage managers</h1>
-  <button @click="getManagers">Get all managers</button>
+  <Managers/>
+  
+  
 </div>
 </template>
 
 <script>
+import Managers from "./Managers";
+
 export default {
     name: "ManageManagers",
-    methods: {
-      getManagers() {
-        var url = "https://localhost:44368/api/Managers";
-        fetch(url, {
-                method: 'GET',
-                credentials: 'include',
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem("token"),
-                    'Content-Type': 'application/json'
-                }})
-            .then(res => res.json().then(re => console.log(re)))
-            .catch(err => console.error('Error:', err));
+    components: {
+      Managers
+    },
+    beforeMount() {
+      if(localStorage.getItem("isManager") == "false")
+      {
+          location.href = "/";
       }
     }
 }
 </script>
 
-<style>
+<style scoped>
+
+h1 {
+  text-align: center;
+}
 
 </style>

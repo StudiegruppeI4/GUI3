@@ -62,7 +62,8 @@ export default {
                 localStorage.setItem("token", token.jwt);
                 localStorage.setItem("email", this.form.email);
                 document.getElementById('id01').style.display='none';
-                window.location.href = "/";
+                this.$emit("isManager");
+                location.reload();
             }))
             .catch(err => console.error('Error:', err));
         }

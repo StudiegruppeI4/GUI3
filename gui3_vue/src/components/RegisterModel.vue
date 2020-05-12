@@ -1,5 +1,7 @@
 <template>
   <div>
+      <h1>Register new Model</h1>
+      <div class="form">
         <div>
             <label for="firstName">First name</label>
             <div>
@@ -35,7 +37,9 @@
                 placeholder="Birthday">
             </div>
         </div>
-        <input type="submit" @click="onSubmit">
+        <button @click="onSubmit">Register</button>
+    </div>
+
   </div>
 </template>
 
@@ -57,24 +61,76 @@ export default {
             var url = "https://localhost:44368/api/Models";
             fetch(url, {
                 method: 'POST',
-                credentials: 'include',
+                credentials: "include",
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem("token"),
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(
                     this.form.model
+                
             )})
-            .then(res => {
-                var items = JSON.parse(res);
-                console.log(items);
-            })
+            .then(res => res.json().then((model) => {
+                console.log(model);
+            }))
             .catch(err => console.error('Error:', err));
+        }
+    },
+    beforeMount() {
+        if(localStorage.getItem("isManager") == "false")
+        {
+            location.href = "/";
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
+
+.form {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    box-shadow:inset 0px 1px 0px 0px #caefab;
+    
+    background-color:#4CAF50;
+    border-radius:6px;
+    min-width: 100px;
+    display:inline-block;
+    cursor:pointer;
+    color:white;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 6px;
+        
+}
+button:hover {
+        
+    background-color: #2e9444;
+}
+button:active {
+    position:relative;
+    top:1px;
+}
 
 </style>

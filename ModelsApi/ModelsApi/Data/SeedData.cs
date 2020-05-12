@@ -39,7 +39,9 @@ namespace ModelsApi.Data
                 new EfAccount
                 {
                     Email = "boss@m.dk",
-                    PwHash = HashPassword("asdfQWER", BcryptWorkfactor),
+                    PwHash = HashPassword("" +
+                                          "asdfQWER" +
+                                          "", BcryptWorkfactor),
                     IsManager = true
                 },
                 // Seed some models
