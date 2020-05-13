@@ -59,12 +59,6 @@ const routes = [
       import("../components/Jobs.vue")
   },
   {
-    path: "/model",
-    name:"model",
-    component:()=>
-      import("../views/Model.vue")
-  },
-  {
     path: "/model/viewJobs",
     name:"Model Jobs",
     component:()=>

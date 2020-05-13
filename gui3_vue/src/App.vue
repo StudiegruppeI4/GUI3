@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link>
-      <router-link to="/model" v-show="isModel()">Model</router-link>
+      <router-link to="/model/viewJobs" v-show="isModel()">Model</router-link>
       <router-link v-show="isManager()" to="/manager"
         >Manager</router-link
       >

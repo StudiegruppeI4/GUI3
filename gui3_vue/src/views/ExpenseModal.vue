@@ -19,7 +19,6 @@
       <button type="submit" @click="onSubmit">Add Expense to job</button>
     </div>
   </form>
-  <p>model:{{ModelId}} job:{{JobId}}</p>
 </div>
     </div>
 </template>
@@ -79,7 +78,14 @@ export default {
 <style scoped>
 
 body {font-family: Arial, Helvetica, sans-serif;}
-
+input[type=text], input[type=Number] {
+  width: 100%;
+  padding: 14px 20px;
+  margin: 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
 /* Full-width input fields */
 input[type=text], input[type=password] {
   width: 100%;
