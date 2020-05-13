@@ -59,8 +59,6 @@ const routes = [
       import("../components/Jobs.vue")
   },
   {
-<<<<<<< HEAD
-=======
     path: "/manager/jobs/:id",
     name: "EditJob",
     component: () =>
@@ -73,7 +71,6 @@ const routes = [
       import("../views/Model.vue")
   },
   {
->>>>>>> 821ccaf105004d2417dcc54eb03954c4e5b6f78d
     path: "/model/viewJobs",
     name:"Model Jobs",
     component:()=>
