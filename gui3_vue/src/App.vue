@@ -2,9 +2,11 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link>
+      <router-link to="/model" v-show="isModel()">Model</router-link>
       <router-link v-show="isManager()" to="/manager"
         >Manager</router-link
       >
+      
       <LoginModal class="login" v-on:isManager="jwtDecode" />
     </div>
     <router-view />
@@ -29,25 +31,36 @@ export default {
       return localStorage.getItem("token") !== "undefined";
     },
     jwtDecode() {
-    let token = {};
-    let t = localStorage.getItem("token");
-    token.raw = t;
-    token.header = JSON.parse(window.atob(t.split('.')[0]));
-    token.payload = JSON.parse(window.atob(t.split('.')[1]));
-    if (token.payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] == "Manager")
-    {
-      localStorage.setItem("isManager", true);
-      console.log("yes");
-    }
-    else
-    {
-      localStorage.setItem("isManager", false);
-      console.log("no");
-    }
+      let token = {};
+      let t = localStorage.getItem("token");
+      token.raw = t;
+      token.header = JSON.parse(window.atob(t.split('.')[0]));
+      token.payload = JSON.parse(window.atob(t.split('.')[1]));
+      if (token.payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] == "Manager")
+      {
+        localStorage.setItem("isManager", true);
+        localStorage.setItem("isModel",false);
+        
+      }else if(token.payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] == "Model")
+      {
+        localStorage.setItem("isModel", true);
+        localStorage.setItem("isManager", false);
+        
+      }
+      else
+      {
+        localStorage.setItem("isManager", false);
+        localStorage.setItem("isModel", false);
+        
+      }
+      
     },
     isManager() {
       return localStorage.getItem("isManager") == "true";
     },
+    isModel(){
+      return localStorage.getItem("isModel") == "true";
+    }
   },
 };
 </script>
