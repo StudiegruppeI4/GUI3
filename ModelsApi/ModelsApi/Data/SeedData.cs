@@ -239,13 +239,21 @@ namespace ModelsApi.Data
 
         private static void SeedExpenses(ApplicationDbContext context)
         {
-            context.Expenses.Add(
+            context.Expenses.AddRange(
                 new EfExpense
                 {
                     ModelId = 1,
                     JobId = 1,
                     Date = new DateTime(2020, 05, 03),
                     Text = "Taxi",
+                    amount = 88.5M
+                },
+                new EfExpense
+                {
+                    ModelId = 4,
+                    JobId = 3,
+                    Date = new DateTime(2020, 05, 03),
+                    Text = "TaxiDriver",
                     amount = 88.5M
                 }
                 );

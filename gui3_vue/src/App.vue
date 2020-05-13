@@ -41,10 +41,12 @@ export default {
         localStorage.setItem("isManager", true);
         localStorage.setItem("isModel",false);
         
+        
       }else if(token.payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] == "Model")
       {
         localStorage.setItem("isModel", true);
         localStorage.setItem("isManager", false);
+        
         
       }
       else
@@ -53,6 +55,7 @@ export default {
         localStorage.setItem("isModel", false);
         
       }
+      localStorage.setItem("ModelId",token.payload["ModelId"]);
       
     },
     isManager() {
