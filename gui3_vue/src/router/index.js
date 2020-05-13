@@ -59,6 +59,12 @@ const routes = [
       import("../components/Jobs.vue")
   },
   {
+    path: "/manager/jobs/:id",
+    name: "EditJob",
+    component: () =>
+      import("../components/EditJob.vue")
+  },
+  {
     path: "/model",
     name:"model",
     component:()=>

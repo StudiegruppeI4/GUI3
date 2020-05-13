@@ -10,13 +10,13 @@
             <th>Comments</th>
             <th>Edit</th>
         </tr>
-        <tr v-for="job in jobs" v-bind:key="job.customer + job.startDate">
+        <tr v-for="job in jobs" v-bind:key="job.efJobId">
             <td>{{job.customer}}</td>
             <td>{{job.startDate}}</td>
             <td>{{job.days}}</td>
             <td>{{job.location}}</td>
             <td>{{job.comments}}</td>
-            <td><button @click="editJob">Edit</button></td>
+            <td><router-link :to="`/manager/jobs/${job.efJobId}`" class="editButton">Edit</router-link></td>
         </tr>
     </table>
   </div>
@@ -40,11 +40,10 @@ methods: {
                     'Authorization': 'Bearer ' + localStorage.getItem("token"),
                     'Content-Type': 'application/json'
                 }})
-            .then(res => res.json().then(re => this.jobs = re))
+            .then(res => res.json().then(re => {
+                this.jobs = re;
+            }))
             .catch(err => console.error('Error:', err));
-        },
-        editJob() {
-            alert("Not part of the assignment ;)")
         }
     },
       beforeMount() {
@@ -78,12 +77,12 @@ td,th {
     padding: 8px;
 }
 
-button {
+.editButton {
         box-shadow:inset 0px 1px 0px 0px #caefab;
         
         background-color:#4CAF50;
         border-radius:6px;
-        min-width: 100px;
+        min-width: 60px;
         display:inline-block;
         cursor:pointer;
         color:white;
@@ -91,13 +90,15 @@ button {
         font-size:15px;
         font-weight:bold;
         padding:6px 6px;
+        text-decoration: none;
+        text-align: center;
         
 }
-button:hover {
+.editButton:hover {
         
         background-color: #2e9444;
     }
-button:active {
+.editButton:active {
         position:relative;
         top:1px;
     }
