@@ -76,6 +76,7 @@ const routes = [
     component:()=>
       import("../components/ModelJobs.vue")
   },
+
 ];
 
 const router = new VueRouter({
