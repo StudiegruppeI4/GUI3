@@ -1,4 +1,6 @@
-﻿namespace ModelsApi.Models.Entities
+﻿using Newtonsoft.Json;
+
+namespace ModelsApi.Models.Entities
 {
     public class EfJobModel
     {
