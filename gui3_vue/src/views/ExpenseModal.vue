@@ -24,14 +24,7 @@
 </template>
 
 <script>
-// var modal = document.getElementById(this.JobId);
 
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//     if (event.target == modal) {
-//         modal.style.display = "none";
-//     }
-// }
 
 export default {
   name: "Add Expense",
