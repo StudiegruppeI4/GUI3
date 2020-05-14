@@ -24,14 +24,14 @@
 </template>
 
 <script>
-var modal = document.getElementById(this.JobId);
+// var modal = document.getElementById(this.JobId);
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// }
 
 export default {
   name: "Add Expense",
@@ -51,6 +51,7 @@ export default {
   methods: {
         onClickShow(){
           this.showModal = true;
+          console.log(this.showModal);
         },
         onClickHide(){
           this.showModal =false;
@@ -152,7 +153,7 @@ span.psw {
 
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
+  display: block; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
