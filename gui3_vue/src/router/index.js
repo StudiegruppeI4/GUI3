@@ -63,13 +63,7 @@ const routes = [
     name: "EditJob",
     component: () =>
       import("../components/EditJob.vue")
-  },
-  {
-    path: "/model",
-    name:"model",
-    component:()=>
-      import("../views/Model.vue")
-  },
+  }, 
   {
     path: "/model/viewJobs",
     name:"Model Jobs",

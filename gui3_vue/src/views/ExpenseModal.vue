@@ -1,30 +1,30 @@
 <template>
-    <div>
-        <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Add Expense</button>
+  <div>
+        <button @click="onClickShow" style="width:auto;">Add Expense</button>
 
-<div id="id02" class="modal">
-  
-  <form class="modal-content animate" method="post">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-    </div>
+    <div v-show="showModal" class="modal">
+      
+      <form class="modal-content animate" method="post">
+        <div class="imgcontainer">
+          <span @click="onClickHide" class="close" title="Close Modal">&times;</span>
+        </div>
 
-    <div class="container">
-      <label for="description"><b>Description</b></label>
-      <input type="text" placeholder="Enter Description" name="description" v-model="form.text" required>
+        <div class="container">
+          <label for="description"><b>Description</b></label>
+          <input type="text" placeholder="Enter Description" name="description" v-model="form.text" required>
 
-      <label for="amount"><b>Amount</b></label>
-      <input type="Number" placeholder="Enter Amount" name="amount" v-model="form.amount" required>
-        
-      <button type="submit" @click="onSubmit">Add Expense to job</button>
+          <label for="amount"><b>Amount</b></label>
+          <input type="Number" placeholder="Enter Amount" name="amount" v-model="form.amount" required>
+            
+          <button type="submit" @click="onSubmit">Add Expense to job</button>
+        </div>
+      </form>
     </div>
-  </form>
-</div>
-    </div>
+  </div>
 </template>
 
 <script>
-var modal = document.getElementById('id02');
+var modal = document.getElementById(this.JobId);
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -43,10 +43,18 @@ export default {
         text: '',
         amount: '',
         
-      }
+        
+      },
+      showModal: false,
     }
   },
   methods: {
+        onClickShow(){
+          this.showModal = true;
+        },
+        onClickHide(){
+          this.showModal =false;
+        },
         onSubmit(e) {
             e.preventDefault();
             var url = "https://localhost:44368/api/Expenses";
@@ -65,12 +73,13 @@ export default {
             )})
             .then(res => res.json().then(() => {
                 
-                document.getElementById('id02').style.display='none';
+                this.onClickHide();
                 
                 location.reload();
             }))
             .catch(err => console.error('Error:', err));
-        }
+        },
+        
     }
 }
 </script>
