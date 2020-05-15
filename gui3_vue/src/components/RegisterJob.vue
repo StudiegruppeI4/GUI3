@@ -77,6 +77,7 @@ export default {
             )})
             .then(res => res.json().then((Job) => {
                 console.log(Job);
+                location.href = "/manager/jobs";
             }))
             .catch(err => console.error('Error:', err));
         }

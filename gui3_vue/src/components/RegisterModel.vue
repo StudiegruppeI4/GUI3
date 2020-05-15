@@ -72,6 +72,7 @@ export default {
             )})
             .then(res => res.json().then((model) => {
                 console.log(model);
+                location.href = "/manager/managemodels";
             }))
             .catch(err => console.error('Error:', err));
         }

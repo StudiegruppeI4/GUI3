@@ -68,6 +68,7 @@ export default {
             )})
             .then(res => res.json().then((manager) => {
                 console.log(manager);
+                location.href = "/manager/managemanagers";
             }))
             .catch(err => console.error('Error:', err));
         }
